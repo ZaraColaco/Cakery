@@ -1,0 +1,194 @@
+
+html {
+    scroll-behavior: smooth;
+    overflow:auto;
+}
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: var(--scrollbar);
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(255,255,255,0)
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(130,130,130,0.78);
+    border-radius: 3.5px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #515151;
+    }
+/*--------------*/
+/* Custom Root Values */
+
+/* Loading Containers */
+#loadingDiv {
+    height: var(--height);
+    width: 100vw;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    overflow: hidden;
+    background-color: #F2B79F;
+    display: flex;
+    justify-content: center;
+}
+
+/*--------------*/
+/* Navbar */
+#navContainer {
+    background-color: #FFFFFF;
+    z-index: 4;
+    display: inherit;
+    position: fixed;
+    right: 0;
+    top: 100px;
+    height: calc(var(--height)/1.2);
+    overflow: scroll;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-bottom-color: #F2B79F;
+    border-left-color: #F2B79F;
+}
+
+#navbarImg {
+    width: 90px;
+}
+
+.nav-link {
+    color: #6095CF;
+}
+/* Responsive Navbar sizing */
+@media(max-height: 500px) {
+    .nav-item {
+        font-size: 18px;
+    }
+}
+
+@media(min-height: 501px) {
+    .nav-item {
+        font-size: min(max(30px), 3.5vh);
+    }
+}
+
+@media(max-width: 500px) {
+    #navContainer {
+        width: 100vw;
+        padding: 15px;
+        padding-right: 50px;
+    }
+}
+
+@media(min-width: 501px) {
+    #navContainer {
+        width: 80vw;
+        padding: 15px;
+        padding-right: 50px
+    }
+}
+
+@media(min-width: 700px) {
+    #navContainer {
+        width: 70vw;
+        padding: 15px;
+        padding-right: 50px
+    }
+}
+
+@media(min-width: 950px) {
+    #navContainer {
+        width: 50vw;
+        padding: 15px;
+        padding-right: 50px
+    }
+}
+/*--------------*/
+/* Content containers */
+.body {
+    height: 100vw;
+    width: 80vw;
+    background-color: white;
+}
+
+.bodyContent {
+    background-color: white;
+    min-height: var(--height);
+    width: 90vw;
+    z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
+.body-behind {
+    width: 100vw;
+    overflow: hidden;
+    z-index: 5;
+    position: fixed
+}
+
+.content-bg {
+    background-color: rgba(255,255,255,0.8);
+    opacity: 0.7;
+}
+
+
+.main {
+    padding-top: 100px;
+}
+/* Content scroll-in containers */
+.parent {
+    width: 100%;
+}
+
+.scroll-on-view {
+    transition: all 1.5s;
+}
+/*--------------*/
+/* Buttons */
+.btn-secondary {
+    background-color: #a594f3;
+    border-color: #FFFFFF
+}
+
+    .btn-secondary:hover {
+        background-color: #FD6B61;
+        border-color: #F4937D
+    }
+
+.button-fixed {
+    bottom: 0;
+    position: fixed;
+    right: 0;
+    border-radius: 4px;
+}
+/*--------------*/
+/* Hyperlink colors */
+.hyperlink-top {
+    color: #FFFFFF;
+}
+
+    .hyperlink-top:hover {
+        color: black;
+    }
+.background {
+    background: linear-gradient(#e66465, #9198e5);
+    background-repeat: no-repeat;
+    height:inherit;
+    width:inherit;
+    /* background-image: url('../Images/Background1.png');
+    background-size: cover*/
+}
+
+
+spinner-pos {
+    position: absolute;
+    bottom: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
