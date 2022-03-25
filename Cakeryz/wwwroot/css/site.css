@@ -178,12 +178,21 @@ html {
 .background {
     background: linear-gradient(#e66465, #9198e5);
     background-repeat: no-repeat;
-    height:inherit;
-    width:inherit;
     /* background-image: url('../Images/Background1.png');
     background-size: cover*/
 }
+.full-width-div {
+    position: absolute;
+    width: 100%;
+    left:0;
+}
+.lead trans-2{
+    font-family:Arial;
+}
 
+.content{
+    text-align-last;
+}
 
 spinner-pos {
     position: absolute;
@@ -192,3 +201,10 @@ spinner-pos {
     right: 0;
     margin: auto;
 }
+
+
+/*.carousel-control-prev,
+.carousel-control-next {
+    filter:invert(100%);
+}
+*/
