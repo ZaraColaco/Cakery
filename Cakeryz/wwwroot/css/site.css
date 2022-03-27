@@ -24,22 +24,22 @@ html {
 /* Custom Root Values */
 
 /* Loading Containers */
-#loadingDiv {
+/*#loadingDiv {
     height: var(--height);
     width: 100vw;
     position: absolute;
     z-index: 100;
     top: 0;
     overflow: hidden;
-    background-color: #F2B79F;
+    background: linear-gradient(#e664657b, #babdde89);
     display: flex;
     justify-content: center;
-}
+}*/
 
 /*--------------*/
 /* Navbar */
 #navContainer {
-    background-color: #FFFFFF;
+    background-color:white;
     z-index: 4;
     display: inherit;
     position: fixed;
@@ -47,19 +47,21 @@ html {
     top: 100px;
     height: calc(var(--height)/1.2);
     overflow: scroll;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-bottom-color: #F2B79F;
-    border-left-color: #F2B79F;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+    border-bottom-color: rgb(178, 175, 175);
+    border-left-color: rgb(178, 175, 175);
 }
 
-#navbarImg {
-    width: 90px;
+.navbarImg {
+    width: 120px;
+    padding-left:10px;
 }
 
 .nav-link {
     color: #6095CF;
 }
+
 /* Responsive Navbar sizing */
 @media(max-height: 500px) {
     .nav-item {
@@ -138,7 +140,7 @@ html {
 
 
 .main {
-    padding-top: 100px;
+    padding-top: 60px;
 }
 /* Content scroll-in containers */
 .parent {
@@ -152,12 +154,12 @@ html {
 /* Buttons */
 .btn-secondary {
     background-color: #a594f3;
-    border-color: #FFFFFF
+    border-color: #9198e5;
 }
 
     .btn-secondary:hover {
-        background-color: #FD6B61;
-        border-color: #F4937D
+        background-color: #ee74a8;
+        border-color: #f180a9;
     }
 
 .button-fixed {
@@ -175,12 +177,18 @@ html {
     .hyperlink-top:hover {
         color: black;
     }
+/* opening */
 .background {
     background: linear-gradient(#e66465, #9198e5);
     background-repeat: no-repeat;
     /* background-image: url('../Images/Background1.png');
     background-size: cover*/
 }
+.background2 {
+    background: linear-gradient(#e664657b, #babdde89);
+}
+
+
 .full-width-div {
     position: absolute;
     width: 100%;
@@ -190,9 +198,6 @@ html {
     font-family:Arial;
 }
 
-.content{
-    text-align-last;
-}
 
 spinner-pos {
     position: absolute;
@@ -201,9 +206,9 @@ spinner-pos {
     right: 0;
     margin: auto;
 }
-.row .image {
+/*.row .image {
     flex: 1 1 45rem;
-    width: 100%;
+    width: 50%;
 }
 
 .row {
@@ -227,11 +232,39 @@ spinner-pos {
         color: #ccc;
         padding: 1rem 0;
         line-height: 1.8;
-    }
+    }*/
 
 
-/*.carousel-control-prev,
-.carousel-control-next {
-    filter:invert(100%);
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+
 }
-*/
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.content {
+    font-size: 1.6rem;
+    color:black;
+    padding: 1rem 0;
+}
+.ContactImage{
+    padding-top:40px;
+width:500px;
+}
+/*Footer*/
+.page-footer {
+    text-align: left;
+    color: white;
+    padding-top: 10px;
+    background-color: #b6aaf6;
+    border-top: 5px solid #a594f3
+}
+
