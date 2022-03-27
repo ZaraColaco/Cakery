@@ -201,6 +201,33 @@ spinner-pos {
     right: 0;
     margin: auto;
 }
+.row .image {
+    flex: 1 1 45rem;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    background: var(--black);
+    flex-wrap: wrap;
+}
+.row .content {
+    flex: 1 1 45rem;
+    padding: 2rem;
+}
+
+ .row .content h3 {
+        font-size: 3rem;
+        color: #fff;
+    }
+
+.row .content p {
+        font-size: 1.6rem;
+        color: #ccc;
+        padding: 1rem 0;
+        line-height: 1.8;
+    }
 
 
 /*.carousel-control-prev,
