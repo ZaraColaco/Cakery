@@ -14,7 +14,51 @@
 
 </style>
 <body class="">
-@*     <nav class="navbar navbar-light fixed-top" style="background-color: #FFFFFF; border-bottom: 2px solid; border-bottom-color:lightgray;" id="changeColor"> <a class="navbar-brand" href="#"> <img class="navbarImg" src="../Images/Logo.png" alt="Comapny Logo"></a>
+<script>
+		/* Function used to check if the collapsing navbar is collapsed. If collapsed it will open, else will close. Bastardisation of original intended function which would have closed navbar if the user clicked outside of the body, now closes when the user clicks on the navbar-logo */
+
+	$("#navbarButton").click(function() {
+		navToggle(activeButton);
+	if (activeButton == 1) {
+		activeButton = 0;
+		}
+	else {
+		activeButton = 1;
+		}
+	})
+	$('#navbarImg').click(function() {
+		if (state == 0) {
+		navToggle(0);
+	activeButton = 1;
+		}
+	})
+	    /* For always showing scrollbar on moblie devices smaller than values */
+	if ($(window).height() < 600 || $(window).width() < 400) {
+		document.documentElement.style.setProperty('--scrollbar', 7 + 'px');
+	scrollState = 1;
+	}
+	else {
+		document.documentElement.style.setProperty('--scrollbar', 0 + 'px');
+	scrollState = 0;
+	}
+
+	if (state == 0) { // Function makes navbar collapse if the window is scrolled
+		navToggle(0);
+	activeButton = 1;
+	}
+
+	if ($(window).height() < 600 || $(window).width() < 400) {
+		document.documentElement.style.setProperty('--scrollbar', 7 + 'px');}
+	scrollState = 1;
+	
+	else {
+		document.documentElement.style.setProperty('--scrollbar', 0 + 'px');
+	scrollState = 0;
+	}
+
+});
+</script>
+   <nav class="navbar navbar-light fixed-top" style="background-color: #FFFFFF; border-bottom: 2px solid; border-bottom-color:lightgray;" id="changeColor"> <a class="navbar-brand" href="#"> <img class="navbarImg" src="../Images/Logo2.png" alt="Comapny Logo"></a>
         <button class="navbar-toggler bg-light" type="button" id="navbarButton"> <span class="navbar-toggler-icon"></span> </button>
         <div id="navContainer">
             <div class="container-fluid"  style="align-content: flex-start" id="collapsibleNavbar">
@@ -34,7 +78,7 @@
                 </ul>
             </div>
         </div>
-    </nav>*@
+    </nav>
     <main class="main">
         <div class="background">
         <div class= "position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center content-bg id="containerFlowIn" >
