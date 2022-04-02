@@ -92,6 +92,23 @@ html {
     }
 }
 /*-----End-----*/
+/* Add a black background color to the top navigation */
+.topnav {
+    overflow: hidden;
+}
+
+    /* Style the links inside the navigation bar */
+    .topnav a {
+        border-bottom: 3px solid transparent;
+    }
+
+        .topnav a:hover {
+            border-bottom: 3px solid #a594f3;
+        }
+
+        .topnav a.active {
+            border-bottom: 3px solid #ee74a8;
+        }
 
 .body {
     height: 100vw;
@@ -184,16 +201,19 @@ html {
 .lead trans-2{
     font-family:Arial;
 }
-
-
-spinner-pos {
-    position: absolute;
-    bottom: 50%;
-    left: 0;
-    right: 0;
-    margin: auto;
+/* Float to the right on screens that are equal to or less than 768px wide */
+@media (max-width: 768px) {
+    .float-right-sm {
+        float: right;
+    }
 }
 
+/* Float to the right on screens that are equal to or greater than 769px wide */
+@media (min-width: 769px) {
+    .float-right-lg {
+        float: right;
+    }
+}
 /* Create two equal columns that floats next to each other */
 .column {
     float: left;
@@ -247,7 +267,8 @@ header {
     border-radius: 100%;
     display: inline-block;
     position: relative;
-    animation: slide 2s infinite ease;
+    animation: slide 4s infinite ease;
+    animation-duration:4s
 }
 
 /*for n in (1..5) {
@@ -257,14 +278,17 @@ header {
 @keyframes slide {
     0% {
         transform:scale(1);
+        background:#79bce3
     
     }
     50% {
-        opacity:.3; 
-        transform:scale(2);
+        opacity: .3;
+        transform: scale(2);
+        background: #a594f3
     }
     100% {
         transform:scale(1);
+        background:#ee74a8
     }
 }
 
@@ -273,11 +297,79 @@ header {
     width:100%;
     height:100%;
     position:absolute;
-    background-color:#9198e5;
+    background-color:white;
     top:0;
     left:0;
     display:flex;
     justify-content:center;
     align-items:center;
 
+}
+
+.floating {
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    margin-left: 30px;
+    margin-top: 5px;
+}
+
+@keyframes floating {
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    50% {
+        transform: translate(0, 15px);
+    }
+
+    100% {
+        transform: translate(0, -0px);
+    }
+}
+#background {
+    animation-name: color;
+    animation-duration: 15s;
+    animation-timing-function:ease-in-out;
+    animation-iteration-count: infinite;
+}
+@keyframes color {
+    0% {
+        opacity:1;
+        background: linear-gradient(#e66465, #9198e5);
+        background-size:cover;
+    }
+    25%{
+        opacity:0.75;
+    }
+    50% {
+        opacity:1;
+        background: linear-gradient(#9198e5, #91cfef);
+        background-size: cover;
+    }
+    75% {
+        opacity: 0.75;
+    }
+
+    100% {
+        opacity:1;
+        background: linear-gradient(#e66465, #9198e5);
+        background-size: cover;
+    }
+
+}
+#rows {
+    animation-name: text;
+    animation-duration: 5s;
+}
+
+@keyframes text {
+    from {
+        margin-top: 400px;
+    }
+
+    to {
+        margin-top: 0px;
+    }
 }
