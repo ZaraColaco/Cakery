@@ -3991,6 +3991,7 @@ textarea.form-control-lg {
   white-space: nowrap;
 }
 .navbar-nav {
+  color:black;
   display: flex;
   flex-direction: column;
   padding-left: 0;

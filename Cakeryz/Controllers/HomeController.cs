@@ -18,7 +18,7 @@ namespace Cakeryz.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult OurProducts()
         {
             return View();
         }

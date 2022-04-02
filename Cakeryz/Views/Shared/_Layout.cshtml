@@ -10,19 +10,78 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> Home</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> <img src="~/Images/Logo2.png"style="height:70px;width:auto"/></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                         <li class="nav-item">
+                            <a style = "font-size:20px;color:black;"class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style = "font-size:20px;color:black;" class="nav-link " href="#About">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style = "font-size:20px;color:black;" class="nav-link " href= "#Contact">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style = "font-size:20px;color:black;" class="nav-link " asp-area="" asp-controller="Home" asp-action="OurProducts"> Our Products</a>
+                        </li>
+                    </ul>
                 </div>
+            </div>
         </nav>
+        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3">
+             <img src="~/Images/Logo2.png"style="height:70px;width:auto"/>
+            <div class="container-fluid ">
+                <a class="navbar-brand text-black" asp-area="" asp-controller="Home" asp-action="Index"> Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+  <div style="font-size:14px;" class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse text-dark">
+                     <ul class="navbar-nav flex-grow-1">
+                         <li class="nav-item">
+				             <a class="nav-link" href="#About">About</a>
+			             </li>
+			             <li class="nav-item">
+			                <a class="nav-link" href="#Contact">Contact Us</a>
+			             </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="OurProducts"> Our Products</a>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+        </nav>*@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+                   <footer class="page-footer">
+           <div class="container">
+               <div class="row">
+                   <div class="col-lg-8 col-md-8 col-sm-12">
+                       <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+                       <p> Please note that not all our products are allergn freindly, please contact us if you have special requests. <br /> Some products may be seasonal.</p>
+                   </div>
+                   <div class="col-lg-4 col-md-4 col-sm-12">
+                       <h6 class="text-uppercase font-weight-bold">Contact Us</h6>
+                       <a href="mailto:colacozara@gmail.com"> contact@TheCakery.com</a>
+                       <br />
+                       <a href="tel:0800-820-7234">0800-820-7234</a><br>
+                   </div>
+                   <br />
+                   <div style="text-align:center;">
+                   <p style="color: white"> <a href="#" class="hyperlink-top">Back to top</a> <br /> © 2022 Zara's Cakery. All rights reserved. Created by Zara Colaco </p>
+                   </div>
+               </div>
+           </div>
+       </footer>
         </main>
     </div>
 
