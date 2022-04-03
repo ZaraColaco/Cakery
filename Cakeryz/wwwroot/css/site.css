@@ -92,6 +92,7 @@ html {
     }
 }
 /*-----End-----*/
+
 /* Add a black background color to the top navigation */
 .topnav {
     overflow: hidden;
@@ -163,6 +164,10 @@ html {
         background-color: #ee74a8;
         border-color: #f180a9;
     }
+    .btn-secondary:hover {
+        background-color: #ee74a8;
+        border-color: #f180a9;
+    }
 
 .button-fixed {
     bottom: 0;
@@ -182,15 +187,20 @@ html {
 /* opening */
 .background {
     background: linear-gradient(#e66465, #9198e5);
-/*    background: #d9e2f3;*/
+    /*    background: #d9e2f3;*/
     background-repeat: no-repeat;
     /* background-image: url('../Images/Background1.png');
     background-size: cover*/
 }
 .background2 {
     background: linear-gradient(#fff,#eac1fb);
-    /*    background: #dbd9f3;*/
+    position: absolute;
+    width: 100%;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
 }
+    /*    background: #dbd9f3;*/
+
 
 
 .full-width-div {
@@ -212,8 +222,10 @@ html {
 @media (min-width: 769px) {
     .float-right-lg {
         float: right;
+        
     }
 }
+
 /* Create two equal columns that floats next to each other */
 .column {
     float: left;
@@ -271,10 +283,7 @@ header {
     animation-duration:4s
 }
 
-/*for n in (1..5) {
-    .dot{nth-child({n}) animation-delay:(.1s * n);}
-    background: red(#3ac, (50 * n));
-}*/
+
 @keyframes slide {
     0% {
         transform:scale(1);
@@ -313,6 +322,7 @@ header {
     animation-timing-function: ease-in-out;
     margin-left: 30px;
     margin-top: 5px;
+
 }
 
 @keyframes floating {
@@ -340,24 +350,14 @@ header {
         background: linear-gradient(#e66465, #9198e5);
         background-size:cover;
     }
-    25%{
-        opacity:0.75;
-    }
     50% {
+        opacity: 0.75; 
+    }
+    100% {
         opacity:1;
         background: linear-gradient(#9198e5, #91cfef);
         background-size: cover;
     }
-    75% {
-        opacity: 0.75;
-    }
-
-    100% {
-        opacity:1;
-        background: linear-gradient(#e66465, #9198e5);
-        background-size: cover;
-    }
-
 }
 #rows {
     animation-name: text;
@@ -373,3 +373,10 @@ header {
         margin-top: 0px;
     }
 }
+.grow {
+    transition: all .2s ease-in-out;
+}
+
+    .grow:hover {
+        transform: scale(1.1);
+    }

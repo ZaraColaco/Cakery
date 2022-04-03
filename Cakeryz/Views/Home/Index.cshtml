@@ -8,74 +8,25 @@
     <meta charset="UTF-8">
     <meta name="description" content="Free Web tutorials">
     <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel ="stylesheet" href = "site.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="C:\Users\colac\source\repos\Cakeryz\Cakeryz\wwwroot\js\site.js"></script>
 </head>
 
-<body class="">
-
-
-@*<script>
-		/* Function used to check if the collapsing navbar is collapsed. If collapsed it will open, else will close. Bastardisation of original intended function which would have closed navbar if the user clicked outside of the body, now closes when the user clicks on the navbar-logo */
-
-	$("#navbarButton").click(function() {
-		navToggle(activeButton);
-	if (activeButton == 1) {
-		activeButton = 0;
-		}
-	else {
-		activeButton = 1;
-		}
-	})
-	$('#navbarImg').click(function() {
-		if (state == 0) {
-		navToggle(0);
-	activeButton = 1;
-		}
-	})
-	    /* For always showing scrollbar on moblie devices smaller than values */
-	if ($(window).height() < 600 || $(window).width() < 400) {
-		document.documentElement.style.setProperty('--scrollbar', 7 + 'px');
-	scrollState = 1;
-	}
-	else {
-		document.documentElement.style.setProperty('--scrollbar', 0 + 'px');
-	scrollState = 0;
-	}
-
-	if (state == 0) { // Function makes navbar collapse if the window is scrolled
-		navToggle(0);
-	activeButton = 1;
-	}
-
-	if ($(window).height() < 600 || $(window).width() < 400) {
-		document.documentElement.style.setProperty('--scrollbar', 7 + 'px');}
-	scrollState = 1;
-	
-	else {
-		document.documentElement.style.setProperty('--scrollbar', 0 + 'px');
-	scrollState = 0;
-	}
-
-});
-</script>*@
+<body>
 <div class= "loader-wrapper">
     <span class = "loader"><span class="dot"></span></span>
 </div>
 <script type="text/javascript">
-$(document).ready(function () {
-  $(window).load(function(){
-  $('#preloader').delay(3000).fadeOut();
- });
-});
     $(window).on("load",function(){
         $(".loader-wrapper").fadeOut("slow");
     });
 </script>
-   <main class="main">
+   <main class ="main">
        <div id="background">
-           <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center content-bg floating" id="containerFlowIn">
-               <h1 style="font-family: 'Freestyle Script';font-size:80px;font-weight:400; opacity:1;"><span id="delText" style="border-bottom: 2px solid #ffffff">Sweet Senasations Await You! </span></h1>
+           <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center content-bg floating " id="containerFlowIn">
+               <h1 style="font-family: 'Freestyle Script';font-size:80px;font-weight:400; opacity:1;"><span id="delText">Sweet Senasations Await You! </span></h1>
                <p style="font-size:24px;">Our Ovens are on and our doors are open</p>
                <p><span style="border-bottom: 1px solid #505355;">Contact us to order!</span></p>
                <p style="font-size: 16px;">
@@ -83,60 +34,61 @@ $(document).ready(function () {
                </p>
            </div>
        </div>
-       <div style="opacity:100;" class="lead position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center content-bg" id="containerFlowIn2">
+       <div style="opacity:100;" class="lead position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center content-bg " id="containerFlowIn2">
            <div class="row">
-               <div id = "rows" class="col-lg-4 ">
-                   <img class="trans" src="../Images/Chocolatecake.png" style="height: 140px; margin: 10px" alt="Chocolate Cake">
+               <div id = "rows" class="col-lg-4 grow ">
+                   <img class="" src="../Images/Chocolatecake.png" style="height: 140px; margin: 10px" alt="Chocolate Cake">
                    <h2 class="lead trans-2" style="font-size: 35px">Chocolate Mud Cake</h2>
-                   <div class="trans-3">
+                   <div class="">
                        <p>Chocolate Haven! Indulge in this rich chocolate mudcake covered in the silkiest ganache.</p>
                    </div>
-                   <p><a class="trans-4 btn btn-secondary btn-detail" href="#001">View details </a></p>
+@*               <input class=" btn btn-secondary btn-detail" type="button" value="View Details" name="btnOpenPopup" onClick="OpenNewWindow()"/>*@
+                   <p><a class=" btn btn-secondary btn-detail" href="#002">View details </a></p>
                </div>
-               <div id = "rows"class="col-lg-4 ">
-                   <img class="trans" src="../Images/CaramelSlice.png" style="height: 140px; margin: 10px;opacity:0.85;" alt="Caramel Slice">
+               <div id = "rows"class="col-lg-4 grow">
+                   <img src="../Images/CaramelSlice.png" style="height: 140px; margin: 10px;opacity:0.85;" alt="Caramel Slice">
                    <h2 class=" lead trans-2" style="font-size: 35px">Caramel Slice</h2>
-                   <div class="trans-3">
+                   <div >
                        <p> Have a sweet snack, our caramel slice has the smoothest caramel with a tempered chocolate coating.</p>
                    </div>
-                   <p><a class="trans-4 btn btn-secondary btn-detail" href="#002">View details </a></p>
+                   <p><a class=" btn btn-secondary btn-detail" href="#002">View details </a></p>
                </div>
-               <div id ="rows" class="col-lg-4  ">
-                   <img class="trans" src="../Images/Cheesecake.png" style="height: 140px; margin: 10px" alt="New York Cheesecake">
+               <div id ="rows" class="col-lg-4 grow">
+                   <img class="" src="../Images/Cheesecake.png" style="height: 140px; margin: 10px" alt="New York Cheesecake">
                    <h2 class=" lead trans-2" style="font-size: 35px">New York Cheesecake</h2>
-                   <div class="trans-3">
+                   <div >
                        <p> Enjoy a classic made with extra love, we all know homemade cheesecakes are at whole new level.</p>
                    </div>
-                   <p><a class="trans-4 btn btn-secondary btn-detail" href="#003">View details </a></p>
+                   <p><a class=" btn btn-secondary btn-detail" href="#003">View details </a></p>
                </div>
            </div>
        </div>
        <div style="opacity:100;" class="lead position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center content-bg" id="containerFlowIn3">
            <div class="row">
-               <div id = "rows"class="col-lg-4 ">
-                   <img class="trans" src="../Images/BlackForest.png" style="height: 140px; margin: 10px" alt="Black Forest">
+               <div id = "rows"class="col-lg-4 grow">
+                   <img class="" src="../Images/BlackForest.png" style="height: 140px; margin: 10px" alt="Black Forest">
                    <h2 class="lead trans-2" style="font-size: 35px">Black Forest</h2>
-                   <div class="trans-3">
+                   <div class="">
                        <p> Our blackforest cake is layered with delicousness and topped fresh candied cherries. </p>
                    </div>
-                   <p><a class="trans-4 btn btn-secondary btn-detail" href="#004">View details </a></p>
+                   <p><a class=" btn btn-secondary btn-detail" href="#004">View details </a></p>
                </div>
-               <div id = "rows"class="col-lg-4 ">
-                   <img class="trans" src="../Images/Cupcakes.png" style="height: 140px; margin: 10px" alt="Chocolate Cupcakes">
+               <div id = "rows"class="col-lg-4 grow ">
+                   <img class="" src="../Images/Cupcakes.png" style="height: 140px; margin: 10px" alt="Chocolate Cupcakes">
                    <h2 class=" lead trans-2" style="font-size: 35px">Chocolate Cupcakes</h2>
-                   <div class="trans-3">
+                   <div class="">
                        <p> Light and fluffy chocolate cupcakes with creamy chocolate buttercream frosting, you would never guess ...it's vegan</p>
 
                    </div>
-                   <p><a class="trans-4 btn btn-secondary btn-detail" href="#005">View details </a></p>
+                   <p><a class=" btn btn-secondary btn-detail" href="#005">View details </a></p>
                </div>
-               <div id = "rows"class="col-lg-4 ">
-                   <img class="trans" src="../Images/Banoffee.png" style="height: 140px; margin: 10px" alt="Banoffee Pie">
+               <div id = "rows"class="col-lg-4 grow">
+                   <img class="" src="../Images/Banoffee.png" style="height: 140px; margin: 10px" alt="Banoffee Pie">
                    <h2 class=" lead trans-2" style="font-size: 35px">Banoffee Pie</h2>
-                   <div class="trans-3">
+                   <div class="">
                        <p> Our speciality! Our signature Bannoffee pie is a hot pick, dissappears in second...hurry before it's too late!</p>
                    </div>
-                   <p><a class="trans-4 btn btn-secondary btn-detail" href="#006">View details </a></p>
+                   <p><a class=" btn btn-secondary btn-detail" href="#006">View details </a></p>
                </div>
            </div>
        </div>
@@ -154,7 +106,7 @@ $(document).ready(function () {
                                <button type="button" data-bs-target="#demo" data-bs-slide-to="6"></button>
                                <button type="button" data-bs-target="#demo" data-bs-slide-to="7"></button>
                                <button type="button" data-bs-target="#demo" data-bs-slide-to="8"></button>
-                           </div>
+        </div>
 
                            <!-- The slideshow/carousel -->
                            <div class="carousel-inner carousel-item active slide">
