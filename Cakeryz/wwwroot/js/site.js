@@ -9,6 +9,8 @@
 ////}
 
 ////function hide() {
+
+// -----Left for later development-----
 ////	$(document).ready(function () {
 ////		$('.navbar').hide();
 ////		$('.main').hide();
@@ -24,6 +26,18 @@
 ////				$('.main').show();
 ////			})
 ////		}
+
+// //$(window).on("load",function(){
+// //     $(".loader-wrapper").fadeOut("slow");
+// //    $('.navbar').hide();
+//	// $('.main').hide();
+// //    $('.footer').hide();
+//    //});
+//  </script>
+
+
+
+// -------Work in progress for html popup window ------
 //<script type="text/javascript">
 //    function OpenNewWindow()
 //    { 
@@ -31,28 +45,3 @@
 //    wdw.document.write("Hello \n\n");
 //    wdw.document.write("yes ");
 //         }
-
-// //$(window).on("load",function(){
-// //     $(".loader-wrapper").fadeOut("slow");
-// //    $('.navbar').hide();
-//	// $('.main').hide();
-// //    $('.footer').hide();
-// //    alert("from header 3");
-//    //});
-// //   alert("from header 2");
-//  </script>
-
-//var winWidth = $(window).width();
-//var winHeight = $(window).height();
-
-//// set initial div height / width
-//$('#page-section').css({
-//    'width': winWidth,
-//});
-
-//// make sure div stays full width/height on resize
-//$(window).resize(function () {
-//    $('#page-section').css({
-//        'width': winWidth,
-//    });
-//});

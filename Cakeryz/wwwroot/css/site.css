@@ -249,14 +249,7 @@ html {
     padding-top:40px;
 width:500px;
 }
-/*Footer*/
-.page-footer {
-    text-align: left;
-    color: white;
-    padding-top: 10px;
-    background-color: #b6aaf6;
-    border-top: 5px solid #a594f3
-}
+
 header {
     overflow: hidden;
     position: fixed;
@@ -350,14 +343,23 @@ header {
         background: linear-gradient(#e66465, #9198e5);
         background-size:cover;
     }
-    50% {
+    25% {
         opacity: 0.75; 
     }
-    100% {
+    50% {
         opacity:1;
         background: linear-gradient(#9198e5, #91cfef);
         background-size: cover;
     }
+    75% {
+        opacity: 0.75;
+    }
+    100% {
+        opacity: 1;
+        background: linear-gradient(#e66465, #9198e5);
+        background-size: cover;
+    }
+
 }
 #rows {
     animation-name: text;
@@ -380,3 +382,42 @@ header {
     .grow:hover {
         transform: scale(1.1);
     }
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 350px;
+    height: 800px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    margin-top: 0px;
+    background: linear-gradient(#fff,#eac1fb73);
+}
+
+.price {
+    color: grey;
+    font-size: 22px;
+}
+
+.card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    position: absolute;
+    bottom: 10px;
+    right: 11px;
+    left:10px;
+    color: white;
+    background-color: #a594f3;
+    text-align: center;
+    cursor: pointer;
+    width: 95%;
+    font-size: 18px;
+}
+
+    .card button:hover {
+        background-color:#ee74a8
+    }
+.background3 {
+    background: linear-gradient(#e66465, #9198e5);
+}
