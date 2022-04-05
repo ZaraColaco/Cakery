@@ -22,6 +22,16 @@
     $(window).on("load",function(){
         $(".loader-wrapper").fadeOut("slow");
     });
+    
+// ------ popup window ------
+
+    //function openwindow(pageNm){ 
+    //    window.open(pageNm, '_Blank','Height=400, Width=600 Top=200,left=300,scrollbars=no,resizable=no');
+    //    mywindow.location.href = pageNm;
+    //    mywindow.open();
+    //    w.location.assign("../Home/ChocolateCake.cshtml");
+}
+
 </script>
    <main class ="main">
        <div id="background">
@@ -42,8 +52,8 @@
                    <div class="">
                        <p>Chocolate Haven! Indulge in this rich chocolate mudcake covered in the silkiest ganache.</p>
                    </div>
-@*               <input class=" btn btn-secondary btn-detail" type="button" value="View Details" name="btnOpenPopup" onClick="OpenNewWindow()"/>*@
-                   <p><a class=" btn btn-secondary btn-detail" href="#001">View details </a></p>
+@*               <input class=" btn btn-secondary btn-detail" type="button" value="View Details" onClick=openwindow("../Home/ChocolateCake.cshtml")"/>
+*@             <p><a class=" btn btn-secondary btn-detail" href="#001">View details </a></p>
                </div>
                <div id = "rows"class="col-lg-4 grow">
                    <img src="../Images/CaramelSlice.png" style="height: 140px; margin: 10px;opacity:0.85;" alt="Caramel Slice">

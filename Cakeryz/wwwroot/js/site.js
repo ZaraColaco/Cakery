@@ -36,12 +36,3 @@
 //  </script>
 
 
-
-// -------Work in progress for html popup window ------
-//<script type="text/javascript">
-//    function OpenNewWindow()
-//    { 
-//            var wdw = window.open("","","toolbar=no,status=no,menubar=no,location=center,scrollbars=no,resizable=no,height=500,width=657");
-//    wdw.document.write("Hello \n\n");
-//    wdw.document.write("yes ");
-//         }
