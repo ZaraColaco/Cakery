@@ -421,3 +421,37 @@ header {
 .background3 {
     background: linear-gradient(#e66465, #9198e5);
 }
+#window {
+    animation-name: color2;
+    animation-duration: 15s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes color2 {
+    0% {
+        opacity: 1;
+        background: linear-gradient(white, #beb2f3);
+        background-size: cover;
+    }
+
+    25% {
+        opacity: 0.75;
+    }
+
+    50% {
+        opacity: 1;
+        background: linear-gradient(white, #f0b4f8);
+        background-size: cover;
+    }
+
+    75% {
+        opacity: 0.75;
+    }
+
+    100% {
+        opacity: 1;
+        background: linear-gradient(white, #beb2f3);
+        background-size: cover;
+    }
+}

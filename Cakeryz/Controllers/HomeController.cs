@@ -18,7 +18,7 @@ namespace Cakeryz.Controllers
             return View();
         }
 
-        public IActionResult ChocolateCake()
+        public IActionResult MudCake()
         {
             return View();
         }
