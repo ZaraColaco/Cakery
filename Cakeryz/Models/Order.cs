@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Cakeryz.Areas.Identity.Data;
+
 namespace Cakeryz.Models
 {
     public class Order
@@ -30,7 +32,7 @@ namespace Cakeryz.Models
         [Display(Name = "Payment Received?")]
         public DateTime Paydate { get; set; }//date time picker
 
-        public Customer Customer { get; set; }
+        public CakeryzUser CakeryzUser { get; set; }
         public OrderProduct OrderProduct { get; set; }
     
 

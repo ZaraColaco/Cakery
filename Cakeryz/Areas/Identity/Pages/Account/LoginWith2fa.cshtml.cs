@@ -11,8 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Cakeryz.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+
 using Microsoft.Extensions.Logging;
 
 namespace Cakeryz.Areas.Identity.Pages.Account

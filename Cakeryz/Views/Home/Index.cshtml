@@ -28,6 +28,7 @@
         window.open(pageNm, '_Self');
         //window.open(pageNm, '_Blank','Height=400, Width=600 Top=200,left=300,scrollbars=no,resizable=no');
     }
+
 </script>
 <div class= "loader-wrapper">
     <span class = "loader"><span class="dot"></span></span>
@@ -246,7 +247,11 @@
                <div style = "text-align:center;"class="content">
                    <h3 id="Contact" style="font-family:'Freestyle Script';font-size:60px;font-weight:200;" class="feature-title">Get in Touch!</h3>
                    <div class="form-group">
-                       <input type="text" class="form-control " placeholder="Name" name="">
+                       <input type="text" class="form-control " placeholder="First Name" name="firstName">
+                   </div>
+                   <br />
+                   <div class="form-group">
+                       <input type="text" class="form-control " placeholder="Last Name" name="lastName">
                    </div>
                    <br />
                    <div class="form-group">
@@ -254,13 +259,35 @@
                    </div>
                    <br />
                    <div class="form-group">
-                       <textarea class="form-control" placeholder="Message:" rows="4"></textarea>
+                       <textarea class="form-control" placeholder="Message:" rows="4" name="Msg"></textarea>
                    </div>
                    <br />
-                   <input type="submit" class="btn btn-secondary btn-block" value="Send" name="">
+                   <input type="submit" class="btn btn-secondary btn-block" value="Send" onclick = "sendResponse();" name="">
                </div>
            </div>
        </div>
+       <script>
+        //let user = new User(firstName.value, lastName.value, Email.value);
+        //function sendResponse (user);{
+         
+        //}
+        //alert("Thanks for conatcting us! we'll get back to you as soon as possible");
+function sendMail(str) {
+    var link = "mailto:colacozara@gmail.com" + "&subject=" + escape("Cakery Query") + "&body=" + escape(str);
+    location.href = link;
+}
+function sendResponse() {
+var name = document.forms["contact_form"]["Name"].value;
+var Email = document.forms["contact_form"]["Email"].value;
+var Phone = document.forms["contact_form"]["Phone"].value;
+var Location = document.forms["contact_form"]["Location"].value;
+var Comment = document.forms["contact_form"]["Location"].value;
+if((name !="") && (Email !="") && (Phone !="") && (Location !="") && (Comment !="")) {
+   sendMail("HELLO");
+}
+}
+    }
+</script>
        <div class="background2 scroll-on-view position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center content-bg ">
            <p id="Soon" style="font-family:'Freestyle Script';font-size:60px;font-weight:200; background-color:transparent; text-align:center;">Coming Soon...<p>
            <p style="text-align:center"> COVID 19 has changed our way of life, from birthdays to big celebrations, we've all had our fair share of missed opportunities. With the launch of our online gifting service, you can be sure you're not forgotten. Share the love of our delicious desserts with family and friends, especially on those special occasions your presence is missed. </p>

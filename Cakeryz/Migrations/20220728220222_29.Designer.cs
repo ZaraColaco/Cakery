@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cakeryz.Migrations
 {
     [DbContext(typeof(CakeryzContext))]
-    [Migration("20220614021402_Authentication")]
-    partial class Authentication
+    [Migration("20220728220222_29")]
+    partial class _29
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.5")
+                .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -32,6 +32,9 @@ namespace Cakeryz.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("BillingAddress")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -42,6 +45,15 @@ namespace Cakeryz.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -61,12 +73,16 @@ namespace Cakeryz.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShippingAddress")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -87,6 +103,104 @@ namespace Cakeryz.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Cakeryz.Models.Order", b =>
+                {
+                    b.Property<int>("OrderID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"), 1L, 1);
+
+                    b.Property<string>("CakeryzUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CollectionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DatePlaced")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeliveryorPickup")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Paydate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("OrderID");
+
+                    b.HasIndex("CakeryzUserId");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("Cakeryz.Models.OrderProduct", b =>
+                {
+                    b.Property<int>("OrderProductID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderProductID"), 1L, 1);
+
+                    b.Property<int>("OrderID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderProductID");
+
+                    b.HasIndex("OrderID")
+                        .IsUnique();
+
+                    b.HasIndex("ProductID")
+                        .IsUnique();
+
+                    b.ToTable("OrderProduct");
+                });
+
+            modelBuilder.Entity("Cakeryz.Models.Product", b =>
+                {
+                    b.Property<int>("ProductID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductID"), 1L, 1);
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
+
+                    b.Property<decimal>("ProductionCost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Profit")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("ProductID");
+
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -226,6 +340,34 @@ namespace Cakeryz.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Cakeryz.Models.Order", b =>
+                {
+                    b.HasOne("Cakeryz.Areas.Identity.Data.CakeryzUser", "CakeryzUser")
+                        .WithMany()
+                        .HasForeignKey("CakeryzUserId");
+
+                    b.Navigation("CakeryzUser");
+                });
+
+            modelBuilder.Entity("Cakeryz.Models.OrderProduct", b =>
+                {
+                    b.HasOne("Cakeryz.Models.Order", "Order")
+                        .WithOne("OrderProduct")
+                        .HasForeignKey("Cakeryz.Models.OrderProduct", "OrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Cakeryz.Models.Product", "Product")
+                        .WithOne("OrderProduct")
+                        .HasForeignKey("Cakeryz.Models.OrderProduct", "ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -274,6 +416,18 @@ namespace Cakeryz.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Cakeryz.Models.Order", b =>
+                {
+                    b.Navigation("OrderProduct")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Cakeryz.Models.Product", b =>
+                {
+                    b.Navigation("OrderProduct")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

@@ -71,6 +71,33 @@ namespace Cakeryz.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Required(ErrorMessage = "This field cannot be left empty")]
+            [StringLength(35, ErrorMessage = "First name cannot be longer than 35 characters.")]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+            [Required(ErrorMessage = "This field cannot be left empty")]
+            //[StringLength(35, ErrorMessage = "Last name cannot be longer than 35 characters.")]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+            //[Required(ErrorMessage = "This field cannot be left empty")]
+            //[Display(Name = "Shipping Address")]
+            //public string ShippingAddress { get; set; }
+            //[Required(ErrorMessage = "This field cannot be left empty")]
+            //[Display(Name = "Billing Address")]
+            //public string BillingAddress { get; set; }
+            //[Phone]
+            //[Display(Name = "Phone Number")]
+            //[Required(ErrorMessage = "This field cannot be left empty")]
+            //[StringLength(10, ErrorMessage = "Invalid Phone number")]
+            //public string PhoneNumber { get; set; }
+            [Display(Name = "Full Name")]
+            public string FullName
+            {
+                get
+                {
+                    return LastName + " " + FirstName;
+                }
+            }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -114,6 +141,12 @@ namespace Cakeryz.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                //user.ShippingAddress = Input.ShippingAddress;
+                //user.BillingAddress = Input.BillingAddress;
+                //user.PhoneNumber = Input.PhoneNumber;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

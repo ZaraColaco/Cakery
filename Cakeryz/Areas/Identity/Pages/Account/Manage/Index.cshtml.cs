@@ -4,12 +4,17 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Cakeryz.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace Cakeryz.Areas.Identity.Pages.Account.Manage
 {
@@ -56,9 +61,23 @@ namespace Cakeryz.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            //[Required(ErrorMessage = "This field cannot be left empty")]
+            //[StringLength(35, ErrorMessage = "First name cannot be longer than 35 characters.")]
+            //[Display(Name = "First Name")]
+            //public string FirstName { get; set; }
+            //[Required(ErrorMessage = "This field cannot be left empty")]
+            ////[StringLength(35, ErrorMessage = "Last name cannot be longer than 35 characters.")]
+            //[Display(Name = "Last Name")]
+            //public string LastName { get; set; }
+            [Display(Name = "Shipping Address")]
+            public string? ShippingAddress { get; set; }
+            [Display(Name = "Billing Address")]
+            public string? BillingAddress { get; set; }
             [Phone]
-            [Display(Name = "Phone number")]
-            public string PhoneNumber { get; set; }
+            [Display(Name = "Phone Number")]
+            [StringLength(10, ErrorMessage = "Invalid Phone number")]
+            public string? PhoneNumber { get; set; }
+
         }
 
         private async Task LoadAsync(CakeryzUser user)
@@ -96,6 +115,9 @@ namespace Cakeryz.Areas.Identity.Pages.Account.Manage
 
             if (!ModelState.IsValid)
             {
+                user.ShippingAddress = Input.ShippingAddress;
+                user.BillingAddress = Input.BillingAddress;
+                user.PhoneNumber = Input.PhoneNumber;
                 await LoadAsync(user);
                 return Page();
             }
