@@ -1,0 +1,55 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<h3>@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+<div class="row">
+    <div class="col-md-6">
+        <form id="profile-form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating">
+                <input asp-for="Username" class="form-control" disabled />
+                <label asp-for="Username" class="form-label"></label>
+            </div>
+           @* <div class="form-floating">
+                <input asp-for="Input.FirstName" class="form-control" autocomplete="firstName" aria-required="true" />
+                <label asp-for="Input.FirstName"></label>
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-floating">
+                <input asp-for="Input.LastName" class="form-control" autocomplete="lastName" aria-required="true" />
+                <label asp-for="Input.LastName"></label>
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>*@
+            <br />
+            <div class="form-floating">
+                <input asp-for="Input.ShippingAddress" class="form-control" autocomplete="shippingAddress" aria-required="true" />
+                <label asp-for="Input.ShippingAddress"></label>
+                <span asp-validation-for="Input.ShippingAddress" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-floating">
+                <input asp-for="Input.BillingAddress" class="form-control" autocomplete="billingAddress" aria-required="true" />
+                <label asp-for="Input.BillingAddress"></label>
+                <span asp-validation-for="Input.BillingAddress" class="text-danger"></span>
+            </div>
+            <br />
+             <div class="form-floating">
+                <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="phoneNumber" aria-required="true" />
+                <label asp-for="Input.PhoneNumber"></label>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <br />
+            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
