@@ -12,8 +12,11 @@ builder.Services.AddDbContext<CakeryzContext>(options =>
 builder.Services.AddDefaultIdentity<CakeryzUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<CakeryzContext>();;
 
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 

@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cakeryz.Data;
 using Cakeryz.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Cakeryz.Views.Orders
 {
+    [Authorize(Roles = "Administrator")]
     public class OrdersController : Controller
     {
         private readonly CakeryzContext _context;
