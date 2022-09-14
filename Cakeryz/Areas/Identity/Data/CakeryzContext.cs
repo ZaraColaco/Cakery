@@ -25,11 +25,13 @@ public class CakeryzContext : IdentityDbContext<CakeryzUser>
     }
    
 
-    public DbSet<Cakeryz.Models.Order>? Order { get; set; }
+    //public DbSet<Cakeryz.Models.Order>? Order { get; set; }
 
     public DbSet<Cakeryz.Models.Product>? Product { get; set; }
 
     public DbSet<Cakeryz.Models.OrderProduct>? OrderProduct { get; set; }
+
+    public DbSet<Cakeryz.Models.Order>? Order { get; set; }
 }
 
 public class CakeryzUserEntityConfiguration : IEntityTypeConfiguration<CakeryzUser>

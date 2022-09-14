@@ -13,7 +13,7 @@ namespace Cakeryz.Models
         public int OrderID { get; set; }
         [Display(Name = "Customer")]
         [Required]
-        public int CustomerID { get; set; }
+        public int CakeryUserID { get; set; }
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd-mmm-yyyy hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime DatePlaced { get; set; }//date time now function

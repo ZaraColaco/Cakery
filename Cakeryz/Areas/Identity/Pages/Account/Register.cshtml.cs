@@ -98,6 +98,7 @@ namespace Cakeryz.Areas.Identity.Pages.Account
                     return LastName + " " + FirstName;
                 }
             }
+            public string? Role { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -144,6 +145,7 @@ namespace Cakeryz.Areas.Identity.Pages.Account
 
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
+                user.Role = Input.Role;
                 //user.ShippingAddress = Input.ShippingAddress;
                 //user.BillingAddress = Input.BillingAddress;
                 //user.PhoneNumber = Input.PhoneNumber;

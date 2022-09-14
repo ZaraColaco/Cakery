@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cakeryz.Migrations
 {
     [DbContext(typeof(CakeryzContext))]
-    [Migration("20220728220222_29")]
-    partial class _29
+    [Migration("20220908220133_pt4")]
+    partial class pt4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
+                .HasAnnotation("ProductVersion", "6.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -79,6 +79,9 @@ namespace Cakeryz.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -113,14 +116,14 @@ namespace Cakeryz.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"), 1L, 1);
 
+                    b.Property<int>("CakeryUserID")
+                        .HasColumnType("int");
+
                     b.Property<string>("CakeryzUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CollectionDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("CustomerID")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("DatePlaced")
                         .HasColumnType("datetime2");

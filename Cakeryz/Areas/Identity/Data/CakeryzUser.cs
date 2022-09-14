@@ -10,9 +10,6 @@ namespace Cakeryz.Areas.Identity.Data;
 // Add profile data for application users by adding properties to the CakeryzUser class
 public class CakeryzUser : IdentityUser
 {
-    
-    
-
     [Required(ErrorMessage = "This field cannot be left empty")]
     [StringLength(35, ErrorMessage = "First name cannot be longer than 35 characters.")]
     [Display(Name = "First Name")]
@@ -37,5 +34,7 @@ public class CakeryzUser : IdentityUser
             return LastName + " " + FirstName;
         }
     }
+    
+    public string? Role {get; set;}
 }
 

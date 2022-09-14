@@ -8,11 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using Cakeryz.Data;
 using Cakeryz.Models;
 using Microsoft.AspNetCore.Authorization;
-using System.Data;
 
 namespace Cakeryz.Views.Orders
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly CakeryzContext _context;
@@ -23,6 +22,7 @@ namespace Cakeryz.Views.Orders
         }
 
         // GET: Orders
+        [Authorize(Policy = "adminPolicy")]
         public async Task<IActionResult> Index()
         {
               return _context.Order != null ? 
@@ -59,7 +59,7 @@ namespace Cakeryz.Views.Orders
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderID,CustomerID,DatePlaced,DeliveryorPickup,CollectionDate,Status,Paydate")] Order order)
+        public async Task<IActionResult> Create([Bind("OrderID,CakeryUserID,DatePlaced,DeliveryorPickup,CollectionDate,Status,Paydate")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace Cakeryz.Views.Orders
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderID,CustomerID,DatePlaced,DeliveryorPickup,CollectionDate,Status,Paydate")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderID,CakeryUserID,DatePlaced,DeliveryorPickup,CollectionDate,Status,Paydate")] Order order)
         {
             if (id != order.OrderID)
             {

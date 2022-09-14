@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Cakeryz.Data;
 using Cakeryz.Areas.Identity.Data;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("CakeryzContextConnection") ?? throw new InvalidOperationException("Connection string 'CakeryzContextConnection' not found.");
@@ -12,7 +13,13 @@ builder.Services.AddDbContext<CakeryzContext>(options =>
 builder.Services.AddDefaultIdentity<CakeryzUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<CakeryzContext>();;
 
+builder.Services.AddAuthorization(options =>
+{
+    //options.AddPolicy("RequireAdministratorRole",
+    //     policy => policy.RequireRole("Admin"));
+    options.AddPolicy("adminPolicy", builder => builder.RequireRole("Admin"));
 
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

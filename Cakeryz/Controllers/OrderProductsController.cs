@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Cakeryz.Data;
 using Cakeryz.Models;
 
-namespace Cakeryz.Views.Home.OrderProducts
+namespace Cakeryz.Controllers
 {
     public class OrderProductsController : Controller
     {
@@ -161,14 +161,14 @@ namespace Cakeryz.Views.Home.OrderProducts
             {
                 _context.OrderProduct.Remove(orderProduct);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool OrderProductExists(int id)
         {
-          return (_context.OrderProduct?.Any(e => e.OrderProductID == id)).GetValueOrDefault();
+            return (_context.OrderProduct?.Any(e => e.OrderProductID == id)).GetValueOrDefault();
         }
     }
 }
