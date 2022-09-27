@@ -23,7 +23,9 @@ namespace Cakeryz.Views.Orders
 
         // GET: Orders
         [Authorize(Policy = "adminPolicy")]
+        [Authorize (Roles ="Admin")]
         public async Task<IActionResult> Index()
+        
         {
               return _context.Order != null ? 
                           View(await _context.Order.ToListAsync()) :
