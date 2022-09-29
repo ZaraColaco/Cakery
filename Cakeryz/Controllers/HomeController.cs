@@ -32,6 +32,10 @@ namespace Cakeryz.Controllers
         {
             return View();
         }
+        public IActionResult ContactSubmitted()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -48,11 +52,11 @@ namespace Cakeryz.Controllers
             {
                 MailMessage mail = new MailMessage();
                 // you need to enter your mail address
-                mail.From = new MailAddress("contactzcakery@gmail.com");
+                mail.From = new MailAddress("zcakery@outlook.com");
 
                 //To Email Address - your need to enter your to email address
                 mail.To.Add(contactMail.Email);
-                mail.To.Add("contactzcakery@gmail.com");
+                mail.To.Add("zcakery@outlook.com");
 
                 mail.Subject = contactMail.Name;
 
@@ -68,10 +72,10 @@ namespace Cakeryz.Controllers
                 //create SMTP instant
 
                 //pass mail server address and specify the port number if required
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+                SmtpClient smtpClient = new SmtpClient("smtp.outlook.com");
 
                 //Create network credential and give from email address and password
-                NetworkCredential networkCredential = new NetworkCredential("contactzcakery@gmail.com", "@test123#");
+                NetworkCredential networkCredential = new NetworkCredential("zcakery@outlook.com", "@test123#");
                 smtpClient.UseDefaultCredentials = false;
                 smtpClient.Credentials = networkCredential;
                 smtpClient.Port = 25; // this is default port number - you can also change this
@@ -92,63 +96,6 @@ namespace Cakeryz.Controllers
             return RedirectToAction("ContactSubmitted");
         }
 
-        [HttpPost]
-        public IActionResult Services(ServicesMail servicesMail)///////////////////////////////////services to be removed 
-        {
-            if (!ModelState.IsValid) return View();
-
-            try
-            {
-                MailMessage mail = new MailMessage();
-                // you need to enter your mail address
-                mail.From = new MailAddress("contactzcakery@gmail.com");
-
-                //To Email Address - your need to enter your to email address
-                mail.To.Add(User.Identity.Name);
-                mail.To.Add("contactzcakery@gmail.com");
-
-                mail.Subject = servicesMail.Services;
-
-                //you can specify also CC and BCC - i will skip this
-                //mail.CC.Add("");
-                //mail.Bcc.Add("");
-
-                mail.IsBodyHtml = true;
-
-                string content = "First Name : " + servicesMail.FName;
-                content += "<br/> Last Name : " + servicesMail.LName;
-                content += "<br/> Services : " + servicesMail.Services;
-                content += "<br/> Message : " + servicesMail.Message;
-
-
-                mail.Body = content;
-
-
-                //create SMTP instant
-
-                //you need to pass mail server address and you can also specify the port number if you required
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-
-                //Create nerwork credential and you need to give from email address and password
-                NetworkCredential networkCredential = new NetworkCredential("contactzcakery@gmail.com", "@test123#");
-                smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials = networkCredential;
-                smtpClient.Port = 25; // this is default port number - you can also change this
-                smtpClient.EnableSsl = true; // if ssl required you need to enable it
-                smtpClient.Send(mail);
-
-                ViewBag.Message = "Mail Send";
-
-                // now i need to create the from 
-                ModelState.Clear();
-
-            }
-            catch (Exception ex)
-            {
-                //If any error occured it will show
-                ViewBag.Message = ex.Message.ToString();
-            }
-            return RedirectToAction("ServicesSubmitted");
-        }
+        
     }
 }
