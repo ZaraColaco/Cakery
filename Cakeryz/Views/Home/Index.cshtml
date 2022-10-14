@@ -236,7 +236,7 @@
                <br/>
                <br/>
 
-        <div  class="row ">
+        @*<div  class="row ">
            <div class="column">
                <div>
                    <img class="ContactImage " src='../Images/Contact.png' />
@@ -266,7 +266,44 @@
                    <a style="block-size:max-content; " type="submit" class="btn btn-secondary btn-block" value="Send" onclick="sendResponse();" asp-controller="Home" asp-action="ContactSubmitted">Submit</a>
                </div>
            </div>
-       </div>
+       </div>*@
+
+            <div class="row ">
+                <div class="column">
+                    <div>
+                        <img class="ContactImage " src='../Images/Contact.png' />
+
+                    </div>
+                </div>
+                <div class="column" style="text-align:center;">
+                    <h3 id="Contact" style="font-family:'Freestyle Script';font-size:60px;font-weight:200;" class="feature-title">Get in Touch!</h3>
+                     <br />
+                    <br />
+                    <form method="post">
+
+                            <div class="w3-half">
+
+                                <input size="50" class="w3-input w3-border form control" type="text" asp-for="@Model.Name" placeholder="Name" required name="Name">
+                                <span class="text-danger" asp-validation-for="@Model.Name"></span>
+                            </div>
+                            <br />
+                            <div class="w3-half">
+
+                                    <input size="50" class="w3-input w3-border form control" type="text" asp-for="@Model.Email" placeholder="Email" required name="Email">
+                                <span class="text-danger" asp-validation-for="@Model.Email"></span>
+                            </div>
+                            <br />
+                        <div>
+                            <textarea class="w3-input w3-border form control resizedTextbox" type="text" asp-for="@Model.Message" placeholder="Message" required name="Message"></textarea>
+                            <span class="text-danger" asp-validation-for="@Model.Message"></span>
+                        </div>
+                        <br />
+                        <br />
+                        <button class="btn btn-secondary btn-block" type="submit">Submit</button>
+                    </form>
+                </div>
+                </div>
+
       <script>
         let user = new User(firstName.value, lastName.value, Email.value);
         function sendResponse (user);{
@@ -287,7 +324,7 @@ if((name !="") && (Email !="") && (Phone !="") && (Location !="") && (Comment !=
    sendMail("HELLO");
 }
 }
-    }
+    
 </script>
        <div class="background2 scroll-on-view position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center content-bg ">
            <p id="Soon" style="font-family:'Freestyle Script';font-size:60px;font-weight:200; background-color:transparent; text-align:center;">Coming Soon...<p>
