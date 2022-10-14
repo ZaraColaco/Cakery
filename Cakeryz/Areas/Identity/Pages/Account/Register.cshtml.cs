@@ -2,23 +2,17 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Cakeryz.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
+
 
 namespace Cakeryz.Areas.Identity.Pages.Account
 {
@@ -30,6 +24,7 @@ namespace Cakeryz.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<CakeryzUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly Cakeryz.Data.CakeryzContext _context;
 
         public RegisterModel(
             UserManager<CakeryzUser> userManager,
@@ -45,7 +40,10 @@ namespace Cakeryz.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
         }
-
+        //public CreateModel(Cakeryz.Data.CakeryzContext context)
+        //{
+        //    _context = context;
+        //}
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -153,6 +151,17 @@ namespace Cakeryz.Areas.Identity.Pages.Account
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+
+                //var em = (from t1 in _context.CakeryzUser
+                //          where t1.Email == CakeryzUser.Email
+                //          select t1).FirstOrDefault();//Checks if email is already in use
+                //if (em != null)
+                //{
+                //    ModelState.AddModelError("Custom", " Email is already in use");//Displays error message
+                //    return Page();
+                //}
+
 
                 if (result.Succeeded)
                 {

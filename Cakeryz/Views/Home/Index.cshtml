@@ -236,7 +236,7 @@
                <br/>
                <br/>
 
-       <div  class="row ">
+        <div  class="row ">
            <div class="column">
                <div>
                    <img class="ContactImage " src='../Images/Contact.png' />
@@ -244,37 +244,7 @@
                </div>
            </div>
 
-
-
-
-               <div class="w3-col m6">
-                    
-                    <form method="post">
-                        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                            <div class="w3-half">
-                                
-                                <input class="w3-input w3-border" type="text" asp-for="@Model.Name" placeholder="Name" required name="Name">
-                                <span class="text-danger" asp-validation-for="@Model.Name"></span>
-                            </div>
-                            <div class="w3-half">
-                                
-                                <input class="w3-input w3-border" type="text" asp-for="@Model.Email" placeholder="Email" required name="Email">
-                                <span class="text-danger" asp-validation-for="@Model.Email"></span>
-                            </div>
-                        </div>
-                        <div>
-                            
-                            <input class="w3-input w3-border" type="text" asp-for="@Model.Message" placeholder="Message" required name="Message">
-                            <span class="text-danger" asp-validation-for="@Model.Message"></span>
-                        </div>
-                        <button class="btn btn-secondary btn-block" type="submit">Submit</button>
-                    </form>
-                </div>
-
-
-
-
-@*           <div class="column">
+           <div class="column">
                <div style = "text-align:center;"class="content">
                    <h3 id="Contact" style="font-family:'Freestyle Script';font-size:60px;font-weight:200;" class="feature-title">Get in Touch!</h3>
                    <div class="form-group">
@@ -293,16 +263,16 @@
                        <textarea class="form-control" placeholder="Message:" rows="4" name="Msg"></textarea>
                    </div>
                    <br />
-                   <input type="submit" class="btn btn-secondary btn-block" value="Send" onclick = "sendResponse();" name="">
+                   <a style="block-size:max-content; " type="submit" class="btn btn-secondary btn-block" value="Send" onclick="sendResponse();" asp-controller="Home" asp-action="ContactSubmitted">Submit</a>
                </div>
-           </div>*@
+           </div>
        </div>
-       <script>
-        //let user = new User(firstName.value, lastName.value, Email.value);
-        //function sendResponse (user);{
+      <script>
+        let user = new User(firstName.value, lastName.value, Email.value);
+        function sendResponse (user);{
          
-        //}
-        //alert("Thanks for conatcting us! we'll get back to you as soon as possible");
+        }
+        alert("Thanks for contacting us! we'll get back to you as soon as possible");
 function sendMail(str) {
     var link = "mailto:zcakery@outlook.com" + "&subject=" + escape("Cakery Query") + "&body=" + escape(str);
     location.href = link;

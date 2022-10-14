@@ -4,6 +4,10 @@
 @inject SignInManager<CakeryzUser> SignInManager
 @inject UserManager<CakeryzUser> UserManager
 
+    <script type="text/javascript">
+        var inputValue = @UserManager.GetUserId(User)
+        </script>
+
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {

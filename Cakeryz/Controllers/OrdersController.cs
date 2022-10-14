@@ -7,105 +7,108 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cakeryz.Data;
 using Cakeryz.Models;
+using Cakeryz.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json.Linq;
+using Xceed.Wpf.Toolkit;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Cakeryz.Views.Home.Products
+namespace Cakeryz.Controllers
 {
-    public class ProductsController : Controller
+    public class OrdersController : Controller
     {
         private readonly CakeryzContext _context;
 
-        public ProductsController(CakeryzContext context)
+        public OrdersController(CakeryzContext context)
         {
             _context = context;
         }
-        [Authorize(Roles = "Admin")]
-        // GET: Products
+        [Authorize]
+        [Authorize(Roles = "Administrator")]
+        // GET: Orders
         public async Task<IActionResult> Index()
         {
-              return _context.Product != null ? 
-                          View(await _context.Product.ToListAsync()) :
-                          Problem("Entity set 'CakeryzContext.Product'  is null.");
+            return View(await _context.Order.ToListAsync());
         }
 
-        // GET: Products/Details/5
+        // GET: Orders/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Product == null)
+            if (id == null || _context.Order == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.ProductID == id);
-            if (product == null)
+            var order = await _context.Order
+                .FirstOrDefaultAsync(m => m.OrderID == id);
+            if (order == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(order);
         }
-
-        // GET: Products/Create
+        [Authorize]
+        // GET: Orders/Create
         public IActionResult Create()
         {
+
             return View();
         }
 
-        // POST: Products/Create
+        // POST: Orders/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductID,Category,ProductName,ProductionCost,Price,Profit")] Product product)
+        public async Task<IActionResult> Create([Bind("OrderID,DatePlaced,DeliveryorPickup,CollectionDate,Status,Paydate,inputValue")] Order order)
         {
-            if (ModelState.IsValid)
             {
-                _context.Add(product);
+                _context.Add(order);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return View(order);
         }
 
-        // GET: Products/Edit/5
+        // GET: Orders/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Product == null)
+            if (id == null || _context.Order == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Product.FindAsync(id);
-            if (product == null)
+            var order = await _context.Order.FindAsync(id);
+            if (order == null)
             {
                 return NotFound();
             }
-            return View(product);
+            return View(order);
         }
 
-        // POST: Products/Edit/5
+        // POST: Orders/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductID,Category,ProductName,ProductionCost,Price,Profit")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderID,DatePlaced,DeliveryorPickup,CollectionDate,Status,Paydate,CakeryzUserId")] Order order)
         {
-            if (id != product.ProductID)
+            if (id != order.OrderID)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(product);
+                    _context.Update(order);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.ProductID))
+                    if (!OrderExists(order.OrderID))
                     {
                         return NotFound();
                     }
@@ -116,49 +119,49 @@ namespace Cakeryz.Views.Home.Products
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return View(order);
         }
 
-        // GET: Products/Delete/5
+        // GET: Orders/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Product == null)
+            if (id == null || _context.Order == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.ProductID == id);
-            if (product == null)
+            var order = await _context.Order
+                .FirstOrDefaultAsync(m => m.OrderID == id);
+            if (order == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(order);
         }
 
-        // POST: Products/Delete/5
+        // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Product == null)
+            if (_context.Order == null)
             {
-                return Problem("Entity set 'CakeryzContext.Product'  is null.");
+                return Problem("Entity set 'CakeryzContext.Order'  is null.");
             }
-            var product = await _context.Product.FindAsync(id);
-            if (product != null)
+            var order = await _context.Order.FindAsync(id);
+            if (order != null)
             {
-                _context.Product.Remove(product);
+                _context.Order.Remove(order);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductExists(int id)
+        private bool OrderExists(int id)
         {
-          return (_context.Product?.Any(e => e.ProductID == id)).GetValueOrDefault();
+            return _context.Order.Any(e => e.OrderID == id);
         }
     }
 }
