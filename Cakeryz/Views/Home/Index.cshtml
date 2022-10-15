@@ -17,6 +17,7 @@
 </head>
 
 <body>
+
     <header>
 
     </header>
@@ -236,37 +237,6 @@
                <br/>
                <br/>
 
-        @*<div  class="row ">
-           <div class="column">
-               <div>
-                   <img class="ContactImage " src='../Images/Contact.png' />
-
-               </div>
-           </div>
-
-           <div class="column">
-               <div style = "text-align:center;"class="content">
-                   <h3 id="Contact" style="font-family:'Freestyle Script';font-size:60px;font-weight:200;" class="feature-title">Get in Touch!</h3>
-                   <div class="form-group">
-                       <input type="text" class="form-control " placeholder="First Name" name="firstName">
-                   </div>
-                   <br />
-                   <div class="form-group">
-                       <input type="text" class="form-control " placeholder="Last Name" name="lastName">
-                   </div>
-                   <br />
-                   <div class="form-group">
-                       <input type="email" class="form-control" placeholder="Email Address" name="email">
-                   </div>
-                   <br />
-                   <div class="form-group">
-                       <textarea class="form-control" placeholder="Message:" rows="4" name="Msg"></textarea>
-                   </div>
-                   <br />
-                   <a style="block-size:max-content; " type="submit" class="btn btn-secondary btn-block" value="Send" onclick="sendResponse();" asp-controller="Home" asp-action="ContactSubmitted">Submit</a>
-               </div>
-           </div>
-       </div>*@
 
             <div class="row ">
                 <div class="column">
@@ -304,7 +274,7 @@
                 </div>
                 </div>
 
-      <script>
+@*      <script>
         let user = new User(firstName.value, lastName.value, Email.value);
         function sendResponse (user);{
          
@@ -317,13 +287,11 @@ function sendMail(str) {
 function sendResponse() {
 var name = document.forms["contact_form"]["Name"].value;
 var Email = document.forms["contact_form"]["Email"].value;
-var Phone = document.forms["contact_form"]["Phone"].value;
-var Location = document.forms["contact_form"]["Location"].value;
 var Comment = document.forms["contact_form"]["Location"].value;
-if((name !="") && (Email !="") && (Phone !="") && (Location !="") && (Comment !="")) {
+if((name !="") && (Email !="") && (Comment !="")) {
    sendMail("HELLO");
 }
-}
+}*@
     
 </script>
        <div class="background2 scroll-on-view position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center content-bg ">

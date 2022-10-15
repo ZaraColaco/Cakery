@@ -15,11 +15,13 @@ builder.Services.AddDefaultIdentity<CakeryzUser>(options => options.SignIn.Requi
 
 builder.Services.AddAuthorization(options =>
 {
-    //options.AddPolicy("RequireAdministratorRole",
-    //     policy => policy.RequireRole("Admin"));
     options.AddPolicy("adminPolicy", builder => builder.RequireRole("Admin"));
 });
-
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("adminPolicy",
+         policy => policy.RequireRole("Admin"));
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Cakeryz.Views.Home.Products
 {
+    [Authorize(Policy = "adminPolicy")]
     public class ProductsController : Controller
     {
         private readonly CakeryzContext _context;
@@ -19,7 +20,7 @@ namespace Cakeryz.Views.Home.Products
         {
             _context = context;
         }
-        [Authorize(Roles = "Admin")]
+        
         // GET: Products
         public async Task<IActionResult> Index()
         {

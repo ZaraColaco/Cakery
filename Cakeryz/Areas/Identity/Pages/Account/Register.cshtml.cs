@@ -12,7 +12,10 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-
+using Cakeryz.Models;
+using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using System.Web;
 
 namespace Cakeryz.Areas.Identity.Pages.Account
 {
@@ -24,7 +27,7 @@ namespace Cakeryz.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<CakeryzUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private readonly Cakeryz.Data.CakeryzContext _context;
+
 
         public RegisterModel(
             UserManager<CakeryzUser> userManager,
@@ -140,10 +143,10 @@ namespace Cakeryz.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-
+                //Session["CurrentUser"] = "xyz";
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
-                user.Role = Input.Role;
+                //user.Role = Input.Role;
                 //user.ShippingAddress = Input.ShippingAddress;
                 //user.BillingAddress = Input.BillingAddress;
                 //user.PhoneNumber = Input.PhoneNumber;
@@ -153,14 +156,6 @@ namespace Cakeryz.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
 
-                //var em = (from t1 in _context.CakeryzUser
-                //          where t1.Email == CakeryzUser.Email
-                //          select t1).FirstOrDefault();//Checks if email is already in use
-                //if (em != null)
-                //{
-                //    ModelState.AddModelError("Custom", " Email is already in use");//Displays error message
-                //    return Page();
-                //}
 
 
                 if (result.Succeeded)

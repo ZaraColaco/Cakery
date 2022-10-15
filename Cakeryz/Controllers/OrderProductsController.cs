@@ -9,7 +9,7 @@ using Cakeryz.Data;
 using Cakeryz.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Cakeryz.Views.OrderProducts
+namespace Cakeryz.Controllers
 {
     public class OrderProductsController : Controller
     {
@@ -162,14 +162,14 @@ namespace Cakeryz.Views.OrderProducts
             {
                 _context.OrderProduct.Remove(orderProduct);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool OrderProductExists(int id)
         {
-          return _context.OrderProduct.Any(e => e.OrderProductID == id);
+            return _context.OrderProduct.Any(e => e.OrderProductID == id);
         }
     }
 }

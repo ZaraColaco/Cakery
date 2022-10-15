@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
+
 namespace Cakeryz.Areas.Identity.Data;
 
 // Add profile data for application users by adding properties to the CakeryzUser class
@@ -35,6 +36,6 @@ public class CakeryzUser : IdentityUser
         }
     }
     
-    public string? Role {get; set;}
+   // public string? Role {get; set;}
 }
 

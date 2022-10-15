@@ -7,10 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cakeryz.Data;
 using Cakeryz.Models;
-using Cakeryz.Areas.Identity.Data;
-using Microsoft.AspNetCore.Identity;
-using Newtonsoft.Json.Linq;
-using Xceed.Wpf.Toolkit;
+using Microsoft.EntityFrameworkCore;
+using Cakeryz.Data;
+using Cakeryz.Models;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Cakeryz.Controllers
@@ -23,8 +22,12 @@ namespace Cakeryz.Controllers
         {
             _context = context;
         }
+        public IActionResult SubmitOrder()
+        {
+            return View();
+        }
         [Authorize]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Policy = "adminPolicy")]
         // GET: Orders
         public async Task<IActionResult> Index()
         {
@@ -48,11 +51,12 @@ namespace Cakeryz.Controllers
 
             return View(order);
         }
-        [Authorize]
+
         // GET: Orders/Create
+        //public DateTime dtime = DateTime.Now;
+        [Authorize]
         public IActionResult Create()
         {
-
             return View();
         }
 
@@ -61,12 +65,15 @@ namespace Cakeryz.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderID,DatePlaced,DeliveryorPickup,CollectionDate,Status,Paydate,inputValue")] Order order)
+        public async Task<IActionResult> Create([Bind("OrderID,dtime,DeliveryorPickup,CollectionDate,Status,Paydate,CakeryzUserId")] Order order)
         {
+
+            if (!ModelState.IsValid)
             {
+
                 _context.Add(order);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("SubmitOrder");
             }
             return View(order);
         }
@@ -92,7 +99,7 @@ namespace Cakeryz.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderID,DatePlaced,DeliveryorPickup,CollectionDate,Status,Paydate,CakeryzUserId")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderID,DatePlaced,DeliveryorPickup,CollectionDate,Status,Paydate")] Order order)
         {
             if (id != order.OrderID)
             {
