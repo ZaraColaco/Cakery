@@ -22,9 +22,9 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("adminPolicy",
          policy => policy.RequireRole("Admin"));
 });
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 
 var app = builder.Build();
 

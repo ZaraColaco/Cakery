@@ -9,6 +9,7 @@ using Cakeryz.Data;
 using Cakeryz.Models;
 using Microsoft.AspNetCore.Authorization;
 
+
 namespace Cakeryz.Controllers
 {
     public class OrderProductsController : Controller
@@ -62,7 +63,7 @@ namespace Cakeryz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("OrderProductID,OrderID,ProductID,Quantity")] OrderProduct orderProduct)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(orderProduct);
                 await _context.SaveChangesAsync();
@@ -103,7 +104,7 @@ namespace Cakeryz.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {

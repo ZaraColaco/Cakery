@@ -7,11 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cakeryz.Data;
 using Cakeryz.Models;
-using Microsoft.AspNetCore.Authorization;
 
-namespace Cakeryz.Views.Home.Products
+namespace Cakeryz.Controllers
 {
-    [Authorize(Policy = "adminPolicy")]
     public class ProductsController : Controller
     {
         private readonly CakeryzContext _context;
@@ -20,13 +18,11 @@ namespace Cakeryz.Views.Home.Products
         {
             _context = context;
         }
-        
+
         // GET: Products
         public async Task<IActionResult> Index()
         {
-              return _context.Product != null ? 
-                          View(await _context.Product.ToListAsync()) :
-                          Problem("Entity set 'CakeryzContext.Product'  is null.");
+            return View(await _context.Product.ToListAsync());
         }
 
         // GET: Products/Details/5
@@ -60,8 +56,9 @@ namespace Cakeryz.Views.Home.Products
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProductID,Category,ProductName,ProductionCost,Price,Profit")] Product product)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
+
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -97,7 +94,7 @@ namespace Cakeryz.Views.Home.Products
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
@@ -152,14 +149,14 @@ namespace Cakeryz.Views.Home.Products
             {
                 _context.Product.Remove(product);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProductExists(int id)
         {
-          return (_context.Product?.Any(e => e.ProductID == id)).GetValueOrDefault();
+            return _context.Product.Any(e => e.ProductID == id);
         }
     }
 }
