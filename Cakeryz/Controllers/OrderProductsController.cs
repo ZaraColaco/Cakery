@@ -51,8 +51,8 @@ namespace Cakeryz.Controllers
         // GET: OrderProducts/Create
         public IActionResult Create()
         {
-            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "DeliveryorPickup");
-            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "Category");
+            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "OrderID");
+            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "ProductName");
             return View();
         }
 
@@ -69,8 +69,8 @@ namespace Cakeryz.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "DeliveryorPickup", orderProduct.OrderID);
-            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "Category", orderProduct.ProductID);
+            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "OrderID");
+            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "ProductName");
             return View(orderProduct);
         }
 
@@ -87,8 +87,8 @@ namespace Cakeryz.Controllers
             {
                 return NotFound();
             }
-            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "DeliveryorPickup", orderProduct.OrderID);
-            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "Category", orderProduct.ProductID);
+            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "OrderID");
+            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "ProductName");
             return View(orderProduct);
         }
 
@@ -124,8 +124,8 @@ namespace Cakeryz.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "DeliveryorPickup", orderProduct.OrderID);
-            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "Category", orderProduct.ProductID);
+            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "OrderID");
+            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "ProductName");
             return View(orderProduct);
         }
 
