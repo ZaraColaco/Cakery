@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cakeryz.Data;
 using Cakeryz.Models;
+using System.Collections;
+
 
 namespace Cakeryz.Controllers
 {
@@ -18,7 +20,21 @@ namespace Cakeryz.Controllers
         {
             _context = context;
         }
-
+        public string NameSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public IList<Product> Product { get; set; }
+        public async Task OnGetAsync(string sortOrder, string searchString)
+        {
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            CurrentFilter = searchString;
+            IQueryable<Product> ProductIQ = from s in _context.Product
+                                        select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ProductIQ = ProductIQ.Where(s => s.Category.Contains(searchString));
+            }
+            Product = await ProductIQ.AsNoTracking().ToListAsync();
+        }
         // GET: Products
         public async Task<IActionResult> Index()
         {

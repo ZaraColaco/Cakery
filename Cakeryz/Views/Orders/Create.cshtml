@@ -29,8 +29,8 @@
                 <label asp-for="DeliveryorPickup" class="control-label">Delivery or Pickup?</label>
                  <select select asp-for="DeliveryorPickup" class="form-control" >
                     <option value="">Please choose one</option>
-                    <option value="1">Delivery</option>
-                    <option value="2">Pickup</option>
+                    <option value="Delivery">Delivery</option>
+                    <option value="Pickup">Pickup</option>
                     </select>
                 <span asp-validation-for="DeliveryorPickup" class="text-danger"></span>
             </div>
@@ -43,11 +43,12 @@
                 <label asp-for="Status" class="control-label"></label>
                 <select select asp-for="Status" class="form-control">
                     <option value="">Admin Use Only</option>
-                    <option value="1">Requested</option>
-                    <option value="2">Approved</option>
-                    <option value="3">Awaiting Payment</option>
-                    <option value="4">In Progress</option>
-                    <option value="5">Complete</option>
+                    <option value="Requested">Requested</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Awaiting Payment">Awaiting Payment</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Complete">Complete</option>
+                    <option value="Cancelled">Cancelled</option>
                 </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
