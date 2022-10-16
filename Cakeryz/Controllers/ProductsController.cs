@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Cakeryz.Data;
 using Cakeryz.Models;
 using System.Collections;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cakeryz.Controllers
 {
@@ -58,7 +58,7 @@ namespace Cakeryz.Controllers
 
             return View(product);
         }
-
+        [Authorize(Policy = "adminPolicy")]
         // GET: Products/Create
         public IActionResult Create()
         {
