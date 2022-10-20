@@ -7,9 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cakeryz.Data;
 using Cakeryz.Models;
-using Microsoft.EntityFrameworkCore;
-using Cakeryz.Data;
-using Cakeryz.Models;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Cakeryz.Controllers
@@ -27,7 +24,7 @@ namespace Cakeryz.Controllers
             return View();
         }
         [Authorize]
-        [Authorize(Policy = "adminPolicy")]
+        //[Authorize(Policy = "adminPolicy")]
         // GET: Orders
         public async Task<IActionResult> Index()
         {
@@ -65,7 +62,7 @@ namespace Cakeryz.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderID,dtime,DeliveryorPickup,CollectionDate,Status,Paydate,CakeryzUserId")] Order order)
+        public async Task<IActionResult> Create([Bind("OrderID,DatePlaced,DeliveryorPickup,CollectionDate,Status,Paydate,CakeryzUser")] Order order)
         {
 
             if (!ModelState.IsValid)

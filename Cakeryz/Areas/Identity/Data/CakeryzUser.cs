@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
-
+using Cakeryz.Models;
 
 namespace Cakeryz.Areas.Identity.Data;
 
@@ -35,7 +35,7 @@ public class CakeryzUser : IdentityUser
             return LastName + " " + FirstName;
         }
     }
-    
-   // public string? Role {get; set;}
+    public ICollection<Order> Orders { get; set; }
+    // public string? Role {get; set;}
 }
 
