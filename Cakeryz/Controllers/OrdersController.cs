@@ -24,7 +24,7 @@ namespace Cakeryz.Controllers
             return View();
         }
         [Authorize]
-        //[Authorize(Policy = "adminPolicy")]
+        [Authorize(Policy = "adminPolicy")]
         // GET: Orders
         public async Task<IActionResult> Index()
         {
