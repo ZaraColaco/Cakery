@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Cakeryz.Migrations
 {
-    public partial class _29 : Migration
+    public partial class zara : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -181,12 +181,11 @@ namespace Cakeryz.Migrations
                 {
                     OrderID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerID = table.Column<int>(type: "int", nullable: false),
                     DatePlaced = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeliveryorPickup = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CollectionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Paydate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CollectionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Paydate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CakeryzUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>

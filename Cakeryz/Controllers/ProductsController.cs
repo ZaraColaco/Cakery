@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cakeryz.Data;
 using Cakeryz.Models;
+using System.Collections;
+using Microsoft.AspNetCore.Authorization;
 
-namespace Cakeryz.Views.Home.Products
+namespace Cakeryz.Controllers
 {
     public class ProductsController : Controller
     {
@@ -18,13 +20,25 @@ namespace Cakeryz.Views.Home.Products
         {
             _context = context;
         }
-
+        public string NameSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public IList<Product> Product { get; set; }
+        public async Task OnGetAsync(string sortOrder, string searchString)
+        {
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            CurrentFilter = searchString;
+            IQueryable<Product> ProductIQ = from s in _context.Product
+                                        select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ProductIQ = ProductIQ.Where(s => s.Category.Contains(searchString));
+            }
+            Product = await ProductIQ.AsNoTracking().ToListAsync();
+        }
         // GET: Products
         public async Task<IActionResult> Index()
         {
-              return _context.Product != null ? 
-                          View(await _context.Product.ToListAsync()) :
-                          Problem("Entity set 'CakeryzContext.Product'  is null.");
+            return View(await _context.Product.ToListAsync());
         }
 
         // GET: Products/Details/5
@@ -44,7 +58,7 @@ namespace Cakeryz.Views.Home.Products
 
             return View(product);
         }
-
+        [Authorize(Policy = "adminPolicy")]
         // GET: Products/Create
         public IActionResult Create()
         {
@@ -58,8 +72,9 @@ namespace Cakeryz.Views.Home.Products
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProductID,Category,ProductName,ProductionCost,Price,Profit")] Product product)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
+
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -95,7 +110,7 @@ namespace Cakeryz.Views.Home.Products
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
@@ -150,14 +165,14 @@ namespace Cakeryz.Views.Home.Products
             {
                 _context.Product.Remove(product);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProductExists(int id)
         {
-          return (_context.Product?.Any(e => e.ProductID == id)).GetValueOrDefault();
+            return _context.Product.Any(e => e.ProductID == id);
         }
     }
 }

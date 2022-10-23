@@ -455,3 +455,8 @@ header {
         background-size: cover;
     }
 }
+.resizedTextbox {
+    width: 410px;
+    height: 200px;
+    padding: 1px
+}

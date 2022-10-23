@@ -1,14 +1,27 @@
-﻿@model IEnumerable<Cakeryz.Models.Product>
+﻿@using Microsoft.AspNetCore.Mvc;
+@using Cakeryz.Controllers;
+@model IEnumerable<Cakeryz.Models.Product>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Products</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+@*
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>*@
 <table class="table">
     <thead>
         <tr>

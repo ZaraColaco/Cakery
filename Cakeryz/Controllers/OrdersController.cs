@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cakeryz.Data;
 using Cakeryz.Models;
+using Microsoft.AspNetCore.Authorization;
 
-namespace Cakeryz.Views.Orders
+namespace Cakeryz.Controllers
 {
     public class OrdersController : Controller
     {
@@ -18,13 +19,16 @@ namespace Cakeryz.Views.Orders
         {
             _context = context;
         }
-
+        public IActionResult SubmitOrder()
+        {
+            return View();
+        }
+        [Authorize]
+        //[Authorize(Policy = "adminPolicy")]
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-              return _context.Order != null ? 
-                          View(await _context.Order.ToListAsync()) :
-                          Problem("Entity set 'CakeryzContext.Order'  is null.");
+            return View(await _context.Order.ToListAsync());
         }
 
         // GET: Orders/Details/5
@@ -46,6 +50,8 @@ namespace Cakeryz.Views.Orders
         }
 
         // GET: Orders/Create
+        //public DateTime dtime = DateTime.Now;
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -56,13 +62,15 @@ namespace Cakeryz.Views.Orders
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderID,CustomerID,DatePlaced,DeliveryorPickup,CollectionDate,Status,Paydate")] Order order)
+        public async Task<IActionResult> Create([Bind("OrderID,DatePlaced,DeliveryorPickup,CollectionDate,Status,Paydate,CakeryzUser")] Order order)
         {
-            if (ModelState.IsValid)
+
+            if (!ModelState.IsValid)
             {
+
                 _context.Add(order);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("SubmitOrder");
             }
             return View(order);
         }
@@ -88,14 +96,14 @@ namespace Cakeryz.Views.Orders
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderID,CustomerID,DatePlaced,DeliveryorPickup,CollectionDate,Status,Paydate")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderID,DatePlaced,DeliveryorPickup,CollectionDate,Status,Paydate")] Order order)
         {
             if (id != order.OrderID)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
@@ -150,14 +158,14 @@ namespace Cakeryz.Views.Orders
             {
                 _context.Order.Remove(order);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool OrderExists(int id)
         {
-          return (_context.Order?.Any(e => e.OrderID == id)).GetValueOrDefault();
+            return _context.Order.Any(e => e.OrderID == id);
         }
     }
 }

@@ -2,23 +2,20 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Cakeryz.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
+using Cakeryz.Models;
+using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using System.Web;
 
 namespace Cakeryz.Areas.Identity.Pages.Account
 {
@@ -30,6 +27,7 @@ namespace Cakeryz.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<CakeryzUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+
 
         public RegisterModel(
             UserManager<CakeryzUser> userManager,
@@ -45,7 +43,10 @@ namespace Cakeryz.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
         }
-
+        //public CreateModel(Cakeryz.Data.CakeryzContext context)
+        //{
+        //    _context = context;
+        //}
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -98,6 +99,7 @@ namespace Cakeryz.Areas.Identity.Pages.Account
                     return LastName + " " + FirstName;
                 }
             }
+            public string? Role { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -141,9 +143,10 @@ namespace Cakeryz.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-
+                //Session["CurrentUser"] = "xyz";
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
+                //user.Role = Input.Role;
                 //user.ShippingAddress = Input.ShippingAddress;
                 //user.BillingAddress = Input.BillingAddress;
                 //user.PhoneNumber = Input.PhoneNumber;
@@ -151,6 +154,9 @@ namespace Cakeryz.Areas.Identity.Pages.Account
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+
+
 
                 if (result.Succeeded)
                 {

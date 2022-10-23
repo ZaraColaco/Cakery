@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cakeryz.Data;
 using Cakeryz.Models;
+using Microsoft.AspNetCore.Authorization;
 
-namespace Cakeryz.Views.Home.OrderProducts
+
+namespace Cakeryz.Controllers
 {
     public class OrderProductsController : Controller
     {
@@ -18,7 +20,7 @@ namespace Cakeryz.Views.Home.OrderProducts
         {
             _context = context;
         }
-
+        [Authorize]
         // GET: OrderProducts
         public async Task<IActionResult> Index()
         {
@@ -49,8 +51,8 @@ namespace Cakeryz.Views.Home.OrderProducts
         // GET: OrderProducts/Create
         public IActionResult Create()
         {
-            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "DeliveryorPickup");
-            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "Category");
+            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "OrderID");
+            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "ProductName");
             return View();
         }
 
@@ -61,14 +63,14 @@ namespace Cakeryz.Views.Home.OrderProducts
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("OrderProductID,OrderID,ProductID,Quantity")] OrderProduct orderProduct)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(orderProduct);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "DeliveryorPickup", orderProduct.OrderID);
-            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "Category", orderProduct.ProductID);
+            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "OrderID");
+            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "ProductName");
             return View(orderProduct);
         }
 
@@ -85,8 +87,8 @@ namespace Cakeryz.Views.Home.OrderProducts
             {
                 return NotFound();
             }
-            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "DeliveryorPickup", orderProduct.OrderID);
-            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "Category", orderProduct.ProductID);
+            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "OrderID");
+            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "ProductName");
             return View(orderProduct);
         }
 
@@ -102,7 +104,7 @@ namespace Cakeryz.Views.Home.OrderProducts
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
@@ -122,8 +124,8 @@ namespace Cakeryz.Views.Home.OrderProducts
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "DeliveryorPickup", orderProduct.OrderID);
-            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "Category", orderProduct.ProductID);
+            ViewData["OrderID"] = new SelectList(_context.Order, "OrderID", "OrderID");
+            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "ProductName");
             return View(orderProduct);
         }
 
@@ -161,14 +163,14 @@ namespace Cakeryz.Views.Home.OrderProducts
             {
                 _context.OrderProduct.Remove(orderProduct);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool OrderProductExists(int id)
         {
-          return (_context.OrderProduct?.Any(e => e.OrderProductID == id)).GetValueOrDefault();
+            return _context.OrderProduct.Any(e => e.OrderProductID == id);
         }
     }
 }

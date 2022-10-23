@@ -4,6 +4,7 @@ using Cakeryz.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cakeryz.Migrations
 {
     [DbContext(typeof(CakeryzContext))]
-    partial class CakeryzContextModelSnapshot : ModelSnapshot
+    [Migration("20221015040322_zara")]
+    partial class zara
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -337,7 +339,7 @@ namespace Cakeryz.Migrations
             modelBuilder.Entity("Cakeryz.Models.Order", b =>
                 {
                     b.HasOne("Cakeryz.Areas.Identity.Data.CakeryzUser", "CakeryzUser")
-                        .WithMany("Orders")
+                        .WithMany()
                         .HasForeignKey("CakeryzUserId");
 
                     b.Navigation("CakeryzUser");
@@ -411,11 +413,6 @@ namespace Cakeryz.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Cakeryz.Areas.Identity.Data.CakeryzUser", b =>
-                {
-                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("Cakeryz.Models.Order", b =>
